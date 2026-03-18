@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="page-heading">Mark Attendance</h1>
+
+<div class="card-container">
+
+<form method="POST">
+
+<table class="premium-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Present</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student[1] }}</td>
+            <td>
+                <input type="checkbox" name="{{ student[0] }}" class="custom-checkbox">
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<button type="submit" class="save-btn">
+    Save Attendance
+</button>
+
+
+</form>
+
+</div>
+
+{% endblock %}
