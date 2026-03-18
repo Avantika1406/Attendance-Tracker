@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="landing-wrapper">
+
+    <div class="landing-left">
+        <h1>Smart Attendance<br>Management System</h1>
+        <p>
+            A powerful and modern solution to track,
+            manage and analyze attendance effortlessly.
+        </p>
+
+        <a href="{{ url_for('login') }}" class="primary-btn">
+            Get Started
+        </a>
+    </div>
+
+    <div class="landing-right">
+        <div class="preview-card">
+            <h3>Live Dashboard Preview</h3>
+
+            <div class="preview-box">
+                <div class="mini-stat"></div>
+                <div class="mini-stat"></div>
+                <div class="mini-stat"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="landing-footer">
+    © 2026 MyAttendanceTracker
+</div>
+
+{% endblock %}
