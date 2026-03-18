@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="page-heading">Add Student</h1>
+
+<div class="card-container">
+    <form method="POST" class="form-grid">
+        <input type="text" name="name" placeholder="Student Name" required>
+        <input type="text" name="roll" placeholder="Roll Number" required>
+        <input type="text" name="class" placeholder="Class" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <button type="submit">Add Student</button>
+    </form>
+</div>
+
+{% endblock %}
