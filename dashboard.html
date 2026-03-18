@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="page-heading">Dashboard Overview</h1>
+
+<div class="stats-row">
+
+    <div class="stat-card">
+        <p>Total Students</p>
+        <h2>{{ total_students }}</h2>
+    </div>
+
+    <div class="stat-card">
+        <p>Today's Present</p>
+        <h2>{{ today_present }}</h2>
+    </div>
+
+    <div class="stat-card">
+        <p>Attendance %</p>
+        <h2>{{ percentage }}%</h2>
+    </div>
+
+</div>
+
+<div class="bottom-grid">
+
+    <div class="big-card">
+        <h3>Attendance Insights</h3>
+        <p>Monitor attendance trends and performance summary.</p>
+    </div>
+
+    <div class="card-container">
+    <h2>Quick Actions</h2>
+
+    <div class="quick-actions">
+        <a href="{{ url_for('add_student') }}" class="action-card">
+            ➕ Add Student
+        </a>
+
+        <a href="{{ url_for('mark_attendance') }}" class="action-card">
+            📝 Mark Attendance
+        </a>
+
+        <a href="{{ url_for('view_attendance') }}" class="action-card">
+            📊 View Records
+        </a>
+    </div>
+</div>
+
+
+
+</div>
+
+{% endblock %}

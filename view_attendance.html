@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="page-heading">Attendance Records</h1>
+
+<div class="card-container">
+
+    <!-- Date Filter -->
+    <form method="GET" action="{{ url_for('view_attendance') }}" style="margin-bottom:20px;">
+        <input type="date" name="date" value="{{ selected_date }}">
+        <button type="submit" class="logout-btn">Filter</button>
+    </form>
+
+    {% if records %}
+    <table class="premium-table">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record[0] }}</td>
+                <td>{{ record[1] }}</td>
+                <td class="{{ 'present' if record[2]=='Present' else 'absent' }}">
+                    {{ record[2] }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <hr style="margin:40px 0;">
+
+    <h3>Attendance Percentage Per Student</h3>
+
+    <canvas id="attendanceChart" height="120"></canvas>
+
+    {% else %}
+        <p>No records found.</p>
+    {% endif %}
+
+</div>
+{% if records %}
+<div class="summary-card">
+    Total Records Shown: {{ records|length }}
+</div>
+{% endif %}
+<div class="empty-state">
+    📭 No attendance records found for selected date.
+</div>
+
+
+{% if chart_labels %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const labels = JSON.parse('{{ chart_labels | tojson | safe }}');
+    const dataValues = JSON.parse('{{ chart_data | tojson | safe }}');
+
+    const ctx = document.getElementById('attendanceChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Attendance %',
+                data: dataValues,
+                backgroundColor: 'rgba(99, 102, 241, 0.7)',
+                borderRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
+</script>
+
+{% endif %}
+
+{% endblock %}
